@@ -19,7 +19,7 @@ require('code_runner').setup({
         rust = {
             "cd $dir &&",
             "cargo $fileName &&",
-            "$dir/target/debug/$fileNameWithoutExt",
+            "$dir/$fileNameWithoutExt",
         },
     },
 })
@@ -32,3 +32,5 @@ vim.keymap.set('n', '<leader>rp', ':RunProject<CR>', { noremap = true, silent = 
 vim.keymap.set('n', '<leader>rc', ':RunClose<CR>', { noremap = true, silent = false })
 vim.keymap.set('n', '<leader>crf', ':CRFiletype<CR>', { noremap = true, silent = false })
 vim.keymap.set('n', '<leader>crp', ':CRProjects<CR>', { noremap = true, silent = false })
+-- Run rust project
+vim.keymap.set('n', '<leader>cr', ':w<CR>:botright split | resize 10 | terminal cd $(dirname $(find . -name Cargo.toml)) && cargo run<CR>', { noremap = true, silent = true })
