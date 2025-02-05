@@ -4,6 +4,7 @@
     signingkey = 19980C0A02DDC1CE
 [core]
     sshCommand = ssh -i ~/.ssh/id_rsa
+    editor = "nvim"
 [init]
     defaultBranch = main
 
