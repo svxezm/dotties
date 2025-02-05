@@ -8,7 +8,7 @@
     "margin-right": 0,
     "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/playerctl", "custom/playerlabel"],
     "modules-center": ["cpu", "memory", "disk"],
-    "modules-right": ["tray", "custom/randwall", "pulseaudio", "clock"],
+    "modules-right": [/*"hyprland/window",*/ "tray", "custom/randwall", "pulseaudio", "clock"],
     // Modules configuration
 	"clock": {
 		"format": "  {:%H:%M}",
@@ -38,6 +38,10 @@
     "sort-by-number": true
     },
     },
+
+    /*"hyprland/window": {
+      "format": "{}"
+    },*/
 
     "custom/playerctl": {
       "format": "{icon}",
