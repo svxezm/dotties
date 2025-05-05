@@ -25,4 +25,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
-vim.keymap.set("n", "<leader>m", ":w | !make run<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>m", ":w | !make<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>mc", ":w | !make clean<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>mr", ":w | !make run<CR>", { noremap = true, silent = false })
