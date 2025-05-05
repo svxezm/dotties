@@ -3,6 +3,10 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PICO_SDK_PATH="$HOME/pico-sdk"
+
+export BUN_INSTALL="$HOME/.bun" 
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 ~/boot/show_boot_message.sh
 
@@ -156,27 +160,20 @@ unsetopt EXTENDED_HISTORY
 
 
 # Aliases
-alias -- 'cleangens'='sudo nix-collect-garbage -d'
-# alias -- 'copyfiles'='copynix && copyhypr && copywaybar'
-alias -- 'copyfiles'='copyhypr && copywaybar'
-alias -- 'copyhypr'='cp ~/dotties/config/hypr/* ~/Downloads/dotties/hypr'
-# alias -- 'copynix'='cp /etc/nixos/* ~/Downloads/dotties/nixos'
-alias -- 'copywaybar'='cp ~/dotties/config/waybar/* ~/Downloads/dotties/waybar'
+alias -- 'please'='sudo'
+# alias -- 'cleangens'='sudo nix-collect-garbage -d'
 # alias -- 'flakeconf'='sudo nvim /etc/nixos/flake.nix'
 # alias -- 'genlist'='sudo nix-env --list-generations -p /nix/var/nix/profiles/system'
 # alias -- 'homeconf'='sudo nvim /etc/nixos/home.nix'
 # alias -- 'homerb'='home-manager switch --flake /etc/nixos#liz'
-alias -- 'hyprconf'='nvim ~/dotties/config/hypr/hyprland.conf'
+alias -- 'hyprconf'='helix ~/dotties/config/hypr/hyprland.conf'
 # alias -- 'nixcg'='nix-collect-garbage'
 # alias -- 'nixconf'='sudo nvim /etc/nixos/configuration.nix'
 # alias -- 'nixrb'='sudo nixos-rebuild switch --flake /etc/nixos#nixos'
 # alias -- 'upgrade'='sudo nixos-rebuild switch --upgrade'
-alias -- 'upgrade'='sudo pacman -Syu && yay -Syu'
+alias -- 'upgrade'='sudo pacman -Syu'
 alias -- 'v'='nvim'
+alias -- 'x'='helix'
 alias -- 'rebuild'='cd ~/dotties && source virtenv/bin/activate && ./dotbot/bin/dotbot -c install.conf.yaml'
 
 # Named Directory Hashes
-
-
-
-
