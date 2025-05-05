@@ -7,12 +7,14 @@ require('code_runner').setup({
         c = {
             "cd $dir &&",
             "gcc $fileName -o $fileNameWithoutExt &&",
-            "$dir/$fileNameWithoutExt",
+            "$dir/$fileNameWithoutExt &&",
+            "rm $fileNameWithoutExt",
         },
         cpp = {
             "cd $dir &&",
-            "/usr/bin/g++ -std=c++23 -o $dir/$fileNameWithoutExt $fileName &&",
-            "$dir/$fileNameWithoutExt",
+            "zig c++ $fileName -o $dir/$fileNameWithoutExt &&",
+            "$dir/$fileNameWithoutExt &&",
+            "rm $fileNameWithoutExt",
         },
         sh = "bash",
         ruby = "ruby",
