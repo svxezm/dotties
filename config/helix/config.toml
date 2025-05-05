@@ -1,0 +1,5 @@
+theme = "boo_berry"
+
+[editor]
+line-number = "relative"
+auto-completion = true

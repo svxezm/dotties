@@ -42,6 +42,9 @@
     # neovim
     ~/.config/nvim: config/nvim
 
+    # helix
+    ~/.config/helix: config/helix
+
     # boot message
     ~/boot: config/boot
 
