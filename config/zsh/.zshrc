@@ -175,5 +175,6 @@ alias -- 'upgrade'='sudo pacman -Syu'
 alias -- 'v'='nvim'
 alias -- 'x'='helix'
 alias -- 'rebuild'='cd ~/dotties && source virtenv/bin/activate && ./dotbot/bin/dotbot -c install.conf.yaml'
+alias -- 'cargo-clean-all'='cd ~/dotties/config/scripts && ./cargo_clean.sh'
+alias -- 'editconf'='cd ~/dotties/config/zsh && sudo helix .zshrc'
 
-# Named Directory Hashes
