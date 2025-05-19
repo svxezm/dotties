@@ -8,6 +8,12 @@ export PICO_SDK_PATH="$HOME/pico-sdk"
 export BUN_INSTALL="$HOME/.bun" 
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export GDK_BACKEND=x11
+export WINIT_UNIX_BACKEND=x11
+
+export WEBKIT_DISABLE_DMABUF_RENDERER=1
+export TAURI_WRY_DISABLE_GPU=1
+
 ~/boot/show_boot_message.sh
 
 # Set name of the theme to load --- if set to "random", it will
