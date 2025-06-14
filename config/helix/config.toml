@@ -7,6 +7,8 @@ text-width = 80
 bufferline = "multiple"
 
 [keys.normal]
+C-s = ":w"
+
 # -------------------------
 # from @mattmc3 (https://github.com/helix-editor/helix/issues/5520#issuecomment-1386428351)
 # QWERTY to Colemak remaps
@@ -66,3 +68,6 @@ u = "extend_visual_line_up"
 U = "no_op"
 l = "undo"
 L = "redo"
+
+[keys.insert]
+C-s = ":w"
