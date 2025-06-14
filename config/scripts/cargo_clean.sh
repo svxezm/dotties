@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PROJECTS_DIR=~/Dropbox/codes/languages/rust
+PROJECTS_DIR=/media/OS/codes/languages/rust
 
 for dir in "$PROJECTS_DIR"/**/*; do
   if [ -d "$dir" ] && [ -f "$dir/Cargo.toml" ]; then

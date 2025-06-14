@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PROJECTS_DIR=~/Dropbox/codes/languages/zig
+PROJECTS_DIR=/media/OS/codes/languages/zig
 
 for dir in "$PROJECTS_DIR"/**/*; do
   if [ -d "$dir" ] && [ -f "$dir/build.zig" ]; then
