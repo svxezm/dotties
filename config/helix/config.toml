@@ -1,10 +1,22 @@
-theme = "boo_berry"
+theme = "rose_pine_moon"
 
 [editor]
 line-number = "relative"
 auto-completion = true
 text-width = 80
 bufferline = "multiple"
+
+# [editor.whitespace]
+# render = "all"
+#
+# [editor.whitespace.characters]
+# space = "·"
+# nbsp = "⍽"
+# nnbsp = "␣"
+# tab = "→"
+# newline = "⏎"
+# tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
 
 [keys.normal]
 C-s = ":w"
@@ -70,4 +82,4 @@ l = "undo"
 L = "redo"
 
 [keys.insert]
-C-s = ":w"
+C-s = [":w", "normal_mode"]
