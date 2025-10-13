@@ -1,9 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+source $HOME/.zshenv
+
+export PATH="$HOME:$PATH"
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PICO_SDK_PATH="$HOME/pico-sdk"
+export PICO_SDK_PATH="$HOME/pico/pico-sdk"
 
 export BUN_INSTALL="$HOME/.bun" 
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -13,6 +17,17 @@ export WINIT_UNIX_BACKEND=x11
 
 export WEBKIT_DISABLE_DMABUF_RENDERER=1
 export TAURI_WRY_DISABLE_GPU=1
+
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export GDK_BACKEND=wayland,x11
+export MOZ_ENABLE_WAYLAND=1
+
+export PATH="$HOME/Downloads/zls/zig-out/bin:$PATH"
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
 
 ~/boot/show_boot_message.sh
 
@@ -118,11 +133,11 @@ source $ZSH/oh-my-zsh.sh
 
 typeset -U path cdpath fpath manpath
 
-for profile in ${(z)NIX_PROFILES}; do
-  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
-done
+# for profile in ${(z)NIX_PROFILES}; do
+#   fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
+# done
 
-HELPDIR="/nix/store/azf64cfahr0215gildbdksf6lmjghnyg-zsh-5.9/share/zsh/$ZSH_VERSION/help"
+# HELPDIR="/nix/store/azf64cfahr0215gildbdksf6lmjghnyg-zsh-5.9/share/zsh/$ZSH_VERSION/help"
 
 
 
@@ -178,10 +193,19 @@ alias -- 'hyprconf'='helix ~/dotties/config/hypr/hyprland.conf'
 # alias -- 'nixrb'='sudo nixos-rebuild switch --flake /etc/nixos#nixos'
 # alias -- 'upgrade'='sudo nixos-rebuild switch --upgrade'
 alias -- 'upgrade'='sudo pacman -Syu'
-alias -- 'v'='nvim'
+# alias -- 'v'='nvim'
 alias -- 'x'='helix'
-alias -- 'rebuild'='cd ~/dotties && source virtenv/bin/activate && ./dotbot/bin/dotbot -c install.conf.yaml'
-alias -- 'cargo-clean-all'='~/dotties/config/scripts/cargo_clean.sh'
-alias -- 'zig-clean-all'='~/dotties/config/scripts/zig_clean.sh'
-alias -- 'editzsh'='sudo helix ~/dotties/config/zsh/.zshrc'
-alias -- 'p'='/media/OS/utils/pls/target/release/pls'
+alias -- 'sx'='sudo -E helix'
+alias -- 'rebuild'='cd ~/dotties && source virtenv/bin/activate && ./dotbot/bin/dotbot -c install.conf.yaml && source ~/.zshrc'
+alias -- 'cargo-clean'='~/dotties/config/scripts/cargo_clean.sh'
+alias -- 'zig-clean'='~/dotties/config/scripts/zig_clean.sh'
+alias -- 'zshconf'='sx ~/dotties/config/zsh/.zshrc'
+
+# utils
+alias -- 'p'='/media/OS/codes/languages/rust/projects/pls/target/release/pls'
+alias -- 'calc'='/media/OS/utils/calc/target/release/calc'
+alias -- 'todo'='/media/OS/utils/todo/target/release/todo'
+alias -- 'currency'='/media/OS/utils/currency/target/release/currency'
+alias -- 'zigver'='/home/liz/dotties/config/scripts/zigver'
+alias -- 'mt'='sudo mount /dev/sdb1 /home/liz/external_drive'
+alias -- 'umt'='sudo /home/liz/external_drive'
