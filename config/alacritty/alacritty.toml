@@ -15,3 +15,11 @@ matches = { foreground = "#4e186c", background = "#b66fdc" }
 
 [terminal]
 shell = "tmux"
+
+[keyboard]
+bindings = [
+  { key = "U", mode = "Vi", action = "Up" },
+  { key = "N", mode = "Vi", action = "Left" },
+  { key = "E", mode = "Vi", action = "Down" },
+  { key = "I", mode = "Vi", action = "Right" }
+]
