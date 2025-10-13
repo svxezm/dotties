@@ -12,3 +12,6 @@ style = "Regular"
 cursor = { text = "#6c393c", cursor = "#ecb5bb" }
 [colors.search]
 matches = { foreground = "#4e186c", background = "#b66fdc" }
+
+[terminal]
+shell = "tmux"
