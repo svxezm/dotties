@@ -4,6 +4,7 @@
   link:
     # zsh
     ~/.zshrc: config/zsh/.zshrc
+    ~/.zshenv: config/zsh/.zshenv
 
     # tmux
     ~/.tmux.conf: config/tmux/.tmux.conf
