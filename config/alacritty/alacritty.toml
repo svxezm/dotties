@@ -23,3 +23,7 @@ bindings = [
   { key = "E", mode = "Vi", action = "Down" },
   { key = "I", mode = "Vi", action = "Right" }
 ]
+
+[env]
+TERM = "xterm-256color"
+COLORTERM = "truecolor"
