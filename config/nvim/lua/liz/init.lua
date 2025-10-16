@@ -1,5 +1,0 @@
-require("liz.remap")
-require("liz.plug")
-require("liz.set")
-require("mason").setup()
-require("code_runner").setup()
