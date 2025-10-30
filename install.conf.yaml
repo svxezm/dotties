@@ -12,6 +12,11 @@
     # git
     ~/.gitconfig: config/git/.gitconfig
 
+    # i3
+    ~/.config/i3/config: config/i3/config
+    ~/.config/i3/startup.sh: config/i3/startup.sh
+    ~/.config/i3status/i3status.conf: config/i3status/i3status.conf
+
     # hypr
     ~/.config/hypr/hyprland.conf: config/hypr/hyprland.conf
     ~/.config/hypr/hyprpaper.conf: config/hypr/hyprpaper.conf
@@ -39,9 +44,6 @@
 
     # ranger
     ~/.config/ranger/rc.conf: config/ranger/rc.conf
-
-    # neovim
-    ~/.config/nvim: config/nvim
 
     # helix
     ~/.config/helix: config/helix
