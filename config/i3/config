@@ -34,12 +34,14 @@ exec --no-startup-id dex --autostart --environment i3
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# exec --no-startup-id "systemctl --user restart pipewire pipewire-pulse wireplumber"
-# exec --no-startup-id "redshift -O 4000"
-# exec --no-startup-id "yay -Sy discord-canary --answerclean All --answerdiff None --noconfirm"
-# exec --no-startup-id "i3-msg 'workspace 1; exec spotify'"
-# exec --no-startup-id "i3-msg 'workspace 1; exec zapzap'"
-# exec --no-startup-id "i3-msg 'workspace 1; exec discord-canary'"
+exec --no-startup-id "systemctl --user restart pipewire pipewire-pulse wireplumber"
+exec --no-startup-id "redshift -O 4000"
+exec --no-startup-id "setxkbmap 'us(colemak)'"
+exec --no-startup-id "yay -Sy discord-canary --answerclean All --answerdiff None --noconfirm"
+exec --no-startup-id "i3-msg 'workspace 1; exec spotify'"
+exec --no-startup-id "i3-msg 'workspace 1; exec zapzap'"
+exec --no-startup-id "i3-msg 'workspace 1; exec discord-canary'"
+exec --no-startup-id "i3-msg 'workspace 2; exec librewolf'"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
