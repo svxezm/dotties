@@ -36,12 +36,15 @@ exec --no-startup-id nm-applet
 
 exec --no-startup-id "systemctl --user restart pipewire pipewire-pulse wireplumber"
 exec --no-startup-id "redshift -O 4000"
+exec --no-startup-id "flameshot"
 exec --no-startup-id "setxkbmap 'us(colemak)'"
 exec --no-startup-id "yay -Sy discord-canary --answerclean All --answerdiff None --noconfirm"
 exec --no-startup-id "i3-msg 'workspace 1; exec spotify'"
 exec --no-startup-id "i3-msg 'workspace 1; exec zapzap'"
 exec --no-startup-id "i3-msg 'workspace 1; exec discord-canary'"
 exec --no-startup-id "i3-msg 'workspace 2; exec librewolf'"
+
+bindsym $mod+Control+s exec "flameshot gui"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -207,6 +210,7 @@ client.focused_active $acct1  $dark  $dark  $main1 $dark
 # finds out, if available)
 bar {
         status_command i3status -c ~/.config/i3status/i3status.conf
+        separator_symbol "<>"
 
         colors {
                 background         $dark
