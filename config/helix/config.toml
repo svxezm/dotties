@@ -5,6 +5,7 @@ line-number = "relative"
 auto-completion = true
 text-width = 80
 bufferline = "multiple"
+default-line-ending = "lf"
 
 # [editor.whitespace]
 # render = "all"
