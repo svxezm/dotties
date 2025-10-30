@@ -12,6 +12,9 @@ export PICO_SDK_PATH="$HOME/pico/pico-sdk"
 export BUN_INSTALL="$HOME/.bun" 
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# sets custom rustfmt config
+export RUSTFMT_CONFIG_PATH="$HOME/.config/rustfmt/rustfmt.toml"
+
 # export GDK_BACKEND=x11
 # export WINIT_UNIX_BACKEND=x11
 

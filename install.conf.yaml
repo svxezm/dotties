@@ -12,6 +12,9 @@
     # git
     ~/.gitconfig: config/git/.gitconfig
 
+    # rust
+    ~/.config/rustfmt/rustfmt.toml: config/rustfmt/rustfmt.toml
+
     # i3
     ~/.config/i3/config: config/i3/config
     ~/.config/i3/startup.sh: config/i3/startup.sh
