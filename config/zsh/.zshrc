@@ -12,16 +12,16 @@ export PICO_SDK_PATH="$HOME/pico/pico-sdk"
 export BUN_INSTALL="$HOME/.bun" 
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export GDK_BACKEND=x11
-export WINIT_UNIX_BACKEND=x11
+# export GDK_BACKEND=x11
+# export WINIT_UNIX_BACKEND=x11
 
-export WEBKIT_DISABLE_DMABUF_RENDERER=1
-export TAURI_WRY_DISABLE_GPU=1
+# export WEBKIT_DISABLE_DMABUF_RENDERER=1
+# export TAURI_WRY_DISABLE_GPU=1
 
-export XDG_SESSION_TYPE=wayland
-export QT_QPA_PLATFORM=wayland
-export GDK_BACKEND=wayland,x11
-export MOZ_ENABLE_WAYLAND=1
+# export XDG_SESSION_TYPE=x11
+# export QT_QPA_PLATFORM=x11
+# export GDK_BACKEND=x11
+# export MOZ_ENABLE_WAYLAND=1
 
 export PATH="$HOME/Downloads/zls/zig-out/bin:$PATH"
 
@@ -192,14 +192,18 @@ alias -- 'hyprconf'='helix ~/dotties/config/hypr/hyprland.conf'
 # alias -- 'nixconf'='sudo nvim /etc/nixos/configuration.nix'
 # alias -- 'nixrb'='sudo nixos-rebuild switch --flake /etc/nixos#nixos'
 # alias -- 'upgrade'='sudo nixos-rebuild switch --upgrade'
-alias -- 'upgrade'='sudo pacman -Syu'
+alias -- 'upgrade'='sudo pacman -Syu --noconfirm'
 # alias -- 'v'='nvim'
 alias -- 'x'='helix'
 alias -- 'sx'='sudo -E helix'
+alias -- 'e'='emacs -nw'
+alias -- 'se'='sudo emacs -nw'
 alias -- 'rebuild'='cd ~/dotties && source virtenv/bin/activate && ./dotbot/bin/dotbot -c install.conf.yaml && source ~/.zshrc'
 alias -- 'cargo-clean'='~/dotties/config/scripts/cargo_clean.sh'
 alias -- 'zig-clean'='~/dotties/config/scripts/zig_clean.sh'
 alias -- 'zshconf'='sx ~/dotties/config/zsh/.zshrc'
+alias -- 'i3conf'='x ~/dotties/config/i3/config'
+alias -- 'econf'='x ~/.emacs.d/init.el'
 
 # utils
 alias -- 'p'='/media/OS/codes/languages/rust/projects/pls/target/release/pls'
