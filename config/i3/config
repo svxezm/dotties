@@ -35,6 +35,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 
 exec --no-startup-id "systemctl --user restart pipewire pipewire-pulse wireplumber"
+exec --no-startup-id "fcitx5"
 exec --no-startup-id "redshift -O 4000"
 exec --no-startup-id "flameshot"
 exec --no-startup-id "setxkbmap 'us(colemak)'"
@@ -53,6 +54,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+bindsym $mod+a exec --no-startup-id ~/.config/i3/search.sh
+for_window [title="^search$"] floating enable, resize set 500 350
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -61,7 +65,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal -e tmux
 
 # kill focused window
 bindsym $mod+q kill
@@ -111,7 +115,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+Shift+s layout toggle split
-# workspace_layout stacking
+# layout default stacking
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -120,7 +124,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Control+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -204,7 +208,7 @@ set $dark  #582c4d
 
 # class               backgr  border text   indict child_border
 client.focused        $dark   $dark  $acc1  $main1 $dark
-client.focused_active $acct1  $dark  $dark  $main1 $dark
+client.focused_active $acct2  $dark  $dark  $main1 $dark
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
