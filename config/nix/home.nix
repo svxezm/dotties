@@ -1,208 +1,134 @@
 { config, pkgs, ... }:
 
 {
-  home = {
-    username = "liz";
-    homeDirectory = "/home/liz";
-    stateVersion = "24.05";
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "liz";
+  home.homeDirectory = "/home/liz";
 
-    packages = with pkgs; [
-      git
-      gnupg
-      alacritty
-      neovim
-      zsh
-      zsh-completions
-      zsh-syntax-highlighting
-      fzf
-      neofetch
-      htop
-      nvtopPackages.nvidia
-      zoxide
-      postman
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "25.05"; # Please read the comment before changing.
 
-      tmux
-      unzip
-      speedtest-cli
-      ranger
-      lxqt.lxqt-openssh-askpass
-      mtr
-      ani-cli
-      mpv
-      tor-browser
-      krita
-      obs-studio
-      lmms
-      gwenview
-      imagemagick
-      bun
-      yt-dlp
-      zip
-      mkcert
-      wl-clipboard-x11
-      ngrok
-      arduino-ide
-      thonny
-      gimp
-      nodePackages.vercel
-      translatepy
-      poppler_utils
-      koboldcpp
-    ];
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
+  home.packages = with pkgs; [
+    fzf
+    unzip
+    zip
+    speedtest-cli
+    ranger
+    ani-cli
+    mpv
+    krita
+    obs-studio
+    imagemagick
+    bun
+    yt-dlp
+    flameshot
+    fcitx5
+    redshift
 
-    sessionVariables = {
-      NIXPKGS_ALLOW_UNFREE = "1";
-      PATH = "${config.home.profileDirectory}/bin:${config.home.profileDirectory}/sbin:$PATH";
-      SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
-    };
+    librewolf
+    kitty
+    tmux
+    helix
 
-    file = {
-      ".config/alacritty/alacritty.toml".text = ''
-      	[window]
-	opacity = 0.7
-	blur = true
-	padding = { x = 15, y = 15 }
-	dynamic_padding = true
+    discord
+    spotify
+    whatsie
+    steam
+    steam-run
 
-	[font.normal]
-	family = "FiraCode Nerd Font"
-	style = "Regular"
+    cargo
+    rustc
+    gcc
+    apacheHttpd
+  ];
 
-	[colors]
-	cursor = { text = "#6c393c", cursor = "#ecb5bb" }
-	[colors.search]
-	  matches = { foreground = "#4e186c", background = "#b66fdc" }
-      '';
-      ".gitconfig".text = ''
-        [user]
-	  name = svxezm
-	  email = "igorb.kuhl@gmail.com"
-	  signingkey = 19980C0A02DDC1CE
-	[core]
-	  sshCommand = ssh -i ~/.ssh/id_rsa
-	[init]
-	  defaultBranch = main
-      '';
-      ".zshrc".text = ''
-	if [ "$TMUX" = "" ]; then tmux; fi
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = {
+    "${config.home.homeDirectory}/.config/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
+      pkgs.fetchFromGitHub {
+        owner = "sobolevn";
+        repo = "sobole-zsh-theme";
+        rev = "master";
+        sha256 = "1182r2a2pa41aypcz1r9z1hvmqpqdfgpipny9jd5v19q1qvz20bs";
+      } + "/sobole.zsh-theme";
 
-        if [ -e "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh" ]; then
-          source "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
-        fi
-
-        if [ -z "$SSH_AUTH_SOCK" ]; then
-          eval `ssh-agent -s`
-          ssh-add ~/.ssh/id_rsa
-        fi
-
-	sleep 2
-
-	Hyprland
-      '';
-      ".config/mpv/mpv.conf".text = ''
-        ao=pulse
-	ao=alsa
-	af=lavfi=[acompressor]
-	aformat=sample_fmts=u8|s16:channel_layouts=stereo
-      '';
-      # use the command `ssh-keyscan github.com` and paste all the response in the field below
-      ".ssh/known_hosts".text = ''
-      '';
-      ".ssh/config".text = ''
-        Host *
-	  ForwardAgent yes
-      '';
-      ".tmux.conf".text = ''
-      	unbind C-b
-	set-option -g prefix C-Space
-	bind-key C-Space send-prefix
-
-	bind h split-window -h
-	bind v split-window -v
-	unbind '"'
-	unbind %
-
-	bind r source-file ~/.tmux.conf
-
-      	bind -n M-Left select-pane -L
-      	bind -n M-Right select-pane -R
-      	bind -n M-Up select-pane -U
-      	bind -n M-Down select-pane -D
-
-	set-option -g default-shell $SHELL
-	set -sg escape-time 5
-
-	# DESIGN TWEAKS
-
-	# clock mode
-	setw -g clock-mode-colour pink
-
-	# panes
-	set -g pane-border-style 'fg=pink'
-	set -g pane-active-border-style 'fg=yellow'
-
-	# statatusbar
-	set -g status-position bottom
-	set -g status-justify left
-	set -g status-style 'fg=pink'
-
-	set -g status-left ' '
-	set -g status-left-length 10
-
-	set -g status-right-style 'fg=black bg=pink'
-	set -g status-right '%Y-%m-%d %H:%M '
-	set -g status-right-length 50
-
-	setw -g window-status-current-style 'fg=black bg=pink'
-	setw -g window-status-current-format ' #I #W #F '
-
-	setw -g window-status-style 'fg=pink bg=black'
-	setw -g window-status-format ' #I #[f=white]#W #[fg=pink]#F '
-
-	setw -g window-status-bell-style 'fg=colour250 bg=white bold'
-
-	# messages
-	set -g message-style 'fg=white bg=pink bold'
-      '';
-    };
+    "${config.home.homeDirectory}/.config/oh-my-zsh-custom/themes/bubblegum.zsh-theme".source =
+      pkgs.fetchFromGitHub {
+        owner = "oddhorse";
+        repo = "bubblegum-zsh";
+        rev = "main";
+        sha256 = "06c7yvi7bvsh401hfnr02nbpciva4hfqkbvxik6n2ra2nq1gmgma";
+      } + "/bubblegum.zsh-theme";
   };
 
   nixpkgs.config.allowUnfree = true;
 
-  programs = {
-    zsh = {
-      enable = true;
-      dotDir = ".config/zsh";
-      oh-my-zsh = {
-        enable = true;
-	theme = "funky";
-	plugins = [ "git" "zoxide" "z" ];
-      };
-      shellAliases = {
-	v = "nvim";
-        nixrb = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
-	homerb = "home-manager switch --flake /etc/nixos#liz";
-	nixconf = "sudo nvim /etc/nixos/configuration.nix";
-	flakeconf = "sudo nvim /etc/nixos/flake.nix";
-	homeconf = "sudo nvim /etc/nixos/home.nix";
-	hyprconf = "nvim ~/.config/hypr/hyprland.conf";
-	genlist = "sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
-	upgrade = "sudo nixos-rebuild switch --upgrade";
-	nixcg = "nix-collect-garbage";
-	cleangens = "sudo nix-collect-garbage -d";
-	copynix = "cp /etc/nixos/* ~/Downloads/dotties/nixos";
-	copyhypr = "cp ~/.config/hypr/* ~/Downloads/dotties/hypr";
-	copywaybar = "cp ~/.config/waybar/* ~/Downloads/dotties/waybar";
-	copyfiles = "copynix && copyhypr && copywaybar";
-      };
+  # Home Manager can also manage your environment variables through
+  # 'home.sessionVariables'. These will be explicitly sourced when using a
+  # shell provided by Home Manager. If you don't want to manage your shell
+  # through Home Manager then you have to manually source 'hm-session-vars.sh'
+  # located at either
+  #
+  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #  /etc/profiles/per-user/liz/etc/profile.d/hm-session-vars.sh
+  #
+  home.sessionVariables = {
+    EDITOR = "hx";
+  };
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      x = "hx";
+      sx = "sudo -E hx";
+
+      nixconf = "sx /etc/nixos/configuration.nix";
+      homeconf = "x ~/.config/home-manager/home.nix";
+      nixrb = "sudo nixos-rebuild switch";
+      homerb = "home-manager switch";
+      cleangens = "sudo nix-collect-garbage -d";
+      flakeconf = "sx /etc/nixos/flake.nix";
+      genlist = "sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
+      nixcg = "nix-collect-garbade";
+
+      i3conf = "x ~/.config/i3/config";
+
+      p = "/media/OS/codes/languages/rust/projects/pls/target/release/pls";
+      calc = "/media/OS/utils/calc/target/release/calc";
+      todo = "/media/OS/utils/todo/target/release/todo";
+      currency = "/media/OS/utils/currency/target/release/currency";
     };
-    home-manager.enable = true;
-    ssh = {
+    history.size = 10000;
+
+    oh-my-zsh = {
       enable = true;
-      extraConfig = ''
-        AddKeysToAgent yes
-      '';
-      forwardAgent = true;
+      plugins = [ "git" "z" ];
+      theme = "sobole";
+      # theme = "bubblegum";
+      custom = "${config.home.homeDirectory}/.config/oh-my-zsh-custom";
     };
   };
 }
