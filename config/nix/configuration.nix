@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "liz-zone"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -42,6 +42,32 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+
+    fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+    ];
+
+    fcitx5.settings.inputMethod = {
+      GroupOrder."0" = "Default";
+      "Groups/0" = {
+        Name = "Default";
+        "Default Layout" = "us-colemak";
+        DefaultIM = "keyboard-us-colemak";
+      };
+      "Groups/0/Items/0".Name = "keyboard-us-colemak";
+      "Groups/0/Items/1".Name = "mozc";
+    };
+  };
+
+  fonts.packages = with pkgs; [
+    ipafont
+    kochi-substitute
+    noto-fonts-cjk-sans
+  ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Configure keymap in X11
@@ -50,6 +76,7 @@
 
     desktopManager = {
       xterm.enable = false;
+      runXdgAutostartIfNone = true;
     };
 
     windowManager.i3 = {
@@ -126,6 +153,7 @@
     git
     playerctl
     xclip
+    fcitx5-mozc
 
     cifs-utils
     ntfs3g
@@ -133,6 +161,12 @@
 
   environment.etc.fstab.text =
     "/dev/nvme0n1p4 /media/OS ntfs-3g defaults,uid=1000,gid=1000,nofail 0 0";
+
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
