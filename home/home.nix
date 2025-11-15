@@ -54,7 +54,7 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    "${config.home.homeDirectory}/.config/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
+    "${home.homeDirectory}/.config/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
         owner = "sobolevn";
         repo = "sobole-zsh-theme";
@@ -62,7 +62,7 @@
         sha256 = "1182r2a2pa41aypcz1r9z1hvmqpqdfgpipny9jd5v19q1qvz20bs";
       } + "/sobole.zsh-theme";
 
-    "${config.home.homeDirectory}/.config/oh-my-zsh-custom/themes/bubblegum.zsh-theme".source =
+    "${home.homeDirectory}/.config/oh-my-zsh-custom/themes/bubblegum.zsh-theme".source =
       pkgs.fetchFromGitHub {
         owner = "oddhorse";
         repo = "bubblegum-zsh";
