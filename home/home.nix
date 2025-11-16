@@ -39,7 +39,22 @@
     cargo
     rustc
     gcc
+    clang-tools
+    cppcheck
+    libllvm
+    gnumake
+    cmake
+    bear
     apacheHttpd
+    zig
+
+    # language servers
+    rust-analyzer
+    lldb
+    typescript-language-server
+    vscode-langservers-extracted
+    intelephense
+    zls
   ];
 
   home.file = {
