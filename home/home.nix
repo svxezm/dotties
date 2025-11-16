@@ -132,7 +132,7 @@
       plugins = [ "git" "z" ];
       theme = "sobole";
       # theme = "bubblegum";
-      custom = "${config.home.homeDirectory}/.config/oh-my-zsh-custom";
+      custom = "${home.homeDirectory}/.config/oh-my-zsh-custom";
     };
   };
 }
