@@ -17,21 +17,11 @@
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      # nixosModules.system = {
-      #     imports = [
-      #     ./system/configuration.nix
-      #     ./system/hardware-configuration.nix
-      #   ];
-      # };
-      # homeModules.liz = import ./home/home.nix;
       homeConfigurations = {
         liz = home-manager.lib.homeManagerConfiguration {
-          inherit system;
+          inherit pkgs;
 
-          homeDirectory = "/home/liz";
-          username = "liz";
-
-          configuration.imports = [ ./home/home.nix ];
+          modules = [ ./home/home.nix ];
         };
       };
     };
