@@ -82,7 +82,7 @@
       sysflake = "sx /etc/nixos/flake.nix";
       dotflake = "sx ~/dotties/flake.nix";
 
-      nixrb = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+      nixrb = "sudo nixos-rebuild switch --flake /etc/nixos#nixos && cd /etc/nixos && sudo nix flake update";
       homerb = "nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz && source ~/.zshrc";
 
       genlist = "sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
