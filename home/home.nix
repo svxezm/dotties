@@ -95,6 +95,7 @@
       calc = "/media/OS/utils/calc/target/release/calc";
       todo = "/media/OS/utils/todo/target/release/todo";
       currency = "/media/OS/utils/currency/target/release/currency";
+      fact = "nix-instantiate --eval /media/OS/codes/languages/nix/factorial/factorial.nix --arg num";
     };
     history.size = 10000;
 
