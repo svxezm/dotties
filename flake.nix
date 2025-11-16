@@ -8,7 +8,6 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   # information about that the flake should do with the inputs
@@ -18,12 +17,22 @@
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      nixosModules.system = {
-          imports = [
-          ./system/configuration.nix
-          ./system/hardware-configuration.nix
-        ];
+      # nixosModules.system = {
+      #     imports = [
+      #     ./system/configuration.nix
+      #     ./system/hardware-configuration.nix
+      #   ];
+      # };
+      # homeModules.liz = import ./home/home.nix;
+      homeConfigurations = {
+        liz = home-manager.lib.homeManagerConfiguration {
+          inherit system;
+
+          homeDirectory = "/home/liz";
+          username = "liz";
+
+          configuration.imports = [ ./home/home.nix ];
+        };
       };
-      homeModules.liz = import ./home/home.nix;
     };
 }
