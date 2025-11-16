@@ -82,9 +82,8 @@
       sysflake = "sx /etc/nixos/flake.nix";
       dotflake = "sx ~/dotties/flake.nix";
 
-      updateflake = "sudo nix flake update /etc/nixos/dotfiles";
-      nixrb = "updateflake && sudo nixos-rebuild switch --flake /etc/nixos#nixos";
-      homerb = "home-manager switch --flake /etc/nixos#liz";
+      nixrb = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+      homerb = "nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz";
 
       genlist = "sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
       cleangens = "sudo nix-collect-garbage -d";
