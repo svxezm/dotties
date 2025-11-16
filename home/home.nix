@@ -78,16 +78,16 @@
       sx = "sudo -E hx";
 
       nixconf = "sx ~/dotties/system/configuration.nix";
-      homeconf = "x ~/dotties/home/home.nix";
-      # nixcopy = "sudo cp /etc/nixos/configuration.nix ~/dotties/config/nix/configuration.nix";
-      # flakecopy = "sudo cp /etc/nixos/flake.nix ~/dotties/config/nix/flake.nix";
-      # homecopy = "cp ~/.config/home-manager/home.nix ~/dotties/config/nix/home.nix";
-      # copyall = "nixcopy && flakecopy && homecopy";
-      nixrb = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+      homeconf = "sx ~/dotties/home/home.nix";
+      sysflake = "sx /etc/nixos/flake.nix";
+      dotflake = "sx ~/dotties/flake.nix";
+
+      updateflake = "sudo nix flake update /etc/nixos/dotfiles";
+      nixrb = "updateflake && sudo nixos-rebuild switch --flake /etc/nixos#nixos";
       homerb = "home-manager switch --flake /etc/nixos#liz";
-      cleangens = "sudo nix-collect-garbage -d";
-      flakeconf = "sx /etc/nixos/flake.nix";
+
       genlist = "sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
+      cleangens = "sudo nix-collect-garbage -d";
       nixcg = "nix-collect-garbade";
 
       i3conf = "x ~/.config/i3/config";
