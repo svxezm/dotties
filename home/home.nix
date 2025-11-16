@@ -54,6 +54,8 @@
     typescript-language-server
     vscode-langservers-extracted
     intelephense
+    nil
+    nixd
     zls
   ];
 
