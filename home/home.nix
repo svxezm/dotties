@@ -83,11 +83,11 @@
       dotflake = "sx ~/dotties/flake.nix";
 
       nixrb = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
-      homerb = "nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz";
+      homerb = "nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz && source ~/.zshrc";
 
       genlist = "sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
       cleangens = "sudo nix-collect-garbage -d";
-      nixcg = "nix-collect-garbade";
+      nixcg = "nix-collect-garbage";
 
       i3conf = "x ~/.config/i3/config";
 
