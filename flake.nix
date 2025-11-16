@@ -16,12 +16,27 @@
     system = "x86_64-linux";
     lib = nixpkgs.lib;
     pkgs = nixpkgs.legacyPackages.${system};
+    hmPath = ./home/home.nix;
   in {
+    # home-manager module to system flake
+    homeModules.liz = {
+      imports = [ hmPath ];
+    };
+
+    # nixos module to system flake
+    nixosModules.system = {
+      imports = [
+        ./system/configuration.nix
+        ./system/hardware-configuration.nix
+      ];
+    };
+
+    # home-manager configuration
     homeConfigurations = {
       liz = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        modules = [ ./home/home.nix ];
+        modules = [ hmPath ];
       };
     };
   };
