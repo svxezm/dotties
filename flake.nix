@@ -24,8 +24,6 @@
           ./system/hardware-configuration.nix
         ];
       };
-      homeModules.liz = {
-        imports = [ ./home/home.nix ];
-      };
+      homeModules.liz = import ./home/home.nix;
     };
 }
