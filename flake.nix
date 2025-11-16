@@ -1,5 +1,5 @@
 {
-  description = "My dotfiles";
+  description = "Liz's NixOS and home-manager flake";
 
   # source information
   inputs = {
@@ -11,10 +11,9 @@
   };
 
   # information about that the flake should do with the inputs
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
   let
     system = "x86_64-linux";
-    lib = nixpkgs.lib;
     pkgs = nixpkgs.legacyPackages.${system};
     hmPath = ./home/home.nix;
   in {
