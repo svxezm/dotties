@@ -117,7 +117,7 @@ in
       cleangens = "sudo nix-collect-garbage -d";
       nixcg = "nix-collect-garbage";
 
-      i3conf = "x ~/.config/i3/config";
+      i3conf = "x ~/dotties/config/i3/config";
 
       p = "/media/OS/codes/languages/rust/projects/pls/target/release/pls";
       calc = "/media/OS/utils/calc/target/release/calc";
