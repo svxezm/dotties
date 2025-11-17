@@ -31,9 +31,9 @@ in
 
     discord
     spotify
-    whatsie
     steam
     steam-run
+    vlc
     mpv
     krita
     obs-studio
