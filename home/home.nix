@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  configHome = config.xdg.configHome;
+in
 {
   home.username = "liz";
   home.homeDirectory = "/home/liz";
@@ -60,14 +63,16 @@
   ];
 
   home.file = {
-    "${config.xdg.configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
+    "${configHome}/i3/config".source = ../config/i3/config;
+
+    "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
         owner = "sobolevn";
         repo = "sobole-zsh-theme";
         rev = "master";
         sha256 = "1182r2a2pa41aypcz1r9z1hvmqpqdfgpipny9jd5v19q1qvz20bs";
       } + "/sobole.zsh-theme";
-    "${config.xdg.configHome}/oh-my-zsh-custom/themes/bubblegum.zsh-theme".source =
+    "${configHome}/oh-my-zsh-custom/themes/bubblegum.zsh-theme".source =
       pkgs.fetchFromGitHub {
         owner = "oddhorse";
         repo = "bubblegum-zsh";
@@ -98,8 +103,8 @@
       sysflake = "sx /etc/nixos/flake.nix";
       dotflake = "sx ~/dotties/flake.nix";
 
-      nixrb = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
-      homerb = "nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz && source ~/.zshrc && sudo nix flake update";
+      nixrb = "cd /etc/nixos && sudo nixos-rebuild switch --flake /etc/nixos#nixos && sudo nix flake update";
+      homerb = "nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz && source ~/.zshrc";
 
       genlist = "sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
       cleangens = "sudo nix-collect-garbage -d";
