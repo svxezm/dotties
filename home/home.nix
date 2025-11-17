@@ -60,32 +60,6 @@
   ];
 
   home.file = {
-    "${config.xdg.configHome}/helix/config.toml".source = ../config/helix/config.toml;
-    "${config.xdg.configHome}/helix/languages.toml".source = ../config/helix/languages.toml;
-    "${config.xdg.configHome}/helix/.gitignore".source = ../config/helix/.gitignore;
-
-    "${config.xdg.configHome}/i3/config".source = ../config/i3/config;
-    "${config.xdg.configHome}/i3/search.sh".source = ../config/i3/search.sh;
-    "${config.xdg.configHome}/i3status/i3status.conf".source = ../config/i3status/i3status.conf;
-
-    "${config.xdg.configHome}/kitty/kitty.conf".source = ../config/kitty/kitty.conf;
-
-    ".tmux.conf".source = ../config/tmux/.tmux.conf;
-
-    ".gitconfig".text = ''
-      [user]
-        email = igorb.kuhl@gmail.com
-        name = svxezm
-    '';
-    ".ssh/config".text = ''
-      Host github.com
-        HostName github.com
-        User git
-        IdentityFile ~/.ssh/id_rsa
-        IdentityFile ~/.ssh/id_ed25519
-        AddKeysToAgent yes
-    '';
-
     "${config.xdg.configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
         owner = "sobolevn";
