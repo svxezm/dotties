@@ -30,6 +30,15 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+exec --no-startup-id xsetroot -cursor_name left_ptr
+exec --no-startup-id xrdb -merge ~/.Xresources
+exec --no-startup-id xsetroot -cursor_name rose-pine-dawn
+set $XCURSOR_THEME rose-pine-dawn
+set $XCURSOR_SIZE 16
+exec --no-startup-id export XCURSOR_THEME=rose-pine-dawn
+exec --no-startup-id export XCURSOR_SIZE=16
+exec --no-startup-id xrdb -load ~/.Xresources
+
 # exec --no-startup-id "systemctl --user restart pipewire pipewire-pulse wireplumber"
 # exec --no-startup-id "fcitx5"
 exec --no-startup-id "redshift -O 4000"
