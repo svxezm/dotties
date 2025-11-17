@@ -66,6 +66,8 @@ in
     ".config/i3/config".source = ../config/i3/config;
     ".config/i3/search.sh".source = ../config/i3/search.sh;
     ".config/i3status/i3status.conf".source = ../config/i3status/i3status.conf;
+    ".config/kitty/kitty.conf".source = ../config/kitty/kitty.conf;
+    ".config/kitty/current-theme.conf".source = ../config/kitty/current-theme.conf;
     ".tmux.conf".source = ../config/tmux/.tmux.conf;
 
     "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
