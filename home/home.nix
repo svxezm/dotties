@@ -66,6 +66,8 @@ in
     name = "rose-pine-dawn";
     package = pkgs.rose-pine-cursor;
     size = 16;
+    gtk.enable = true;
+    x11.enable = true;
   };
 
   home.file = {
