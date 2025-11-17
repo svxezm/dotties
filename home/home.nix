@@ -62,6 +62,12 @@ in
     zls
   ];
 
+  home.pointerCursor = {
+    name = "rose-pine-dawn";
+    package = pkgs.rose-pine-cursor;
+    size = 16;
+  };
+
   home.file = {
     ".config/i3/config".source = ../config/i3/config;
     ".config/i3/search.sh".source = ../config/i3/search.sh;
