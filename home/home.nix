@@ -68,8 +68,8 @@ in
     ".config/i3status/i3status.conf".source = ../config/i3status/i3status.conf;
     ".config/kitty/kitty.conf".source = ../config/kitty/kitty.conf;
     ".config/kitty/current-theme.conf".source = ../config/kitty/current-theme.conf;
-    "./config/helix/config.toml".source = ../config/helix/config.toml;
-    "./config/helix/languages.toml".source = ../config/helix/languages.toml;
+    ".config/helix/config.toml".source = ../config/helix/config.toml;
+    ".config/helix/languages.toml".source = ../config/helix/languages.toml;
     ".tmux.conf".source = ../config/tmux/.tmux.conf;
 
     "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
