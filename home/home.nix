@@ -64,6 +64,8 @@ in
 
   home.file = {
     ".config/i3/config".source = ../config/i3/config;
+    ".config/i3/search.sh".source = ../config/i3/search.sh;
+    ".tmux.conf".source = ../config/tmux/.tmux.conf;
 
     "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
