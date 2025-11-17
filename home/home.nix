@@ -123,7 +123,7 @@ in
       calc = "/media/OS/utils/calc/target/release/calc";
       todo = "/media/OS/utils/todo/target/release/todo";
       currency = "/media/OS/utils/currency/target/release/currency";
-      search = "cd /media/OS/codes/languages/rust/projects/search && cargo run --release";
+      search = "cd /media/OS/codes/languages/rust/projects/search && ./target/release/search";
       fact = "nix-instantiate --eval /media/OS/codes/languages/nix/factorial/factorial.nix --arg num";
     };
     history.size = 10000;
