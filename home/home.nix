@@ -63,7 +63,7 @@ in
   ];
 
   home.file = {
-    "${configHome}/i3/config".source = ../config/i3/config;
+    ".config/i3/config".source = ../config/i3/config;
 
     "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
@@ -99,7 +99,7 @@ in
       sx = "sudo -E hx";
 
       nixconf = "sx ~/dotties/system/configuration.nix";
-      homeconf = "sx ~/dotties/home/home.nix";
+      homeconf = "x ~/dotties/home/home.nix";
       sysflake = "sx /etc/nixos/flake.nix";
       dotflake = "sx ~/dotties/flake.nix";
 
