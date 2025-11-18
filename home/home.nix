@@ -6,6 +6,7 @@ in
 {
   imports = [
     ../modules/zsh
+    ../modules/tmux
   ];
 
   home.username = "liz";
@@ -30,7 +31,6 @@ in
 
     librewolf
     kitty
-    tmux
     helix
     emacs
     emacsPackages.meow
@@ -90,7 +90,6 @@ in
     ".config/kitty/kitty.conf".source = ../config/kitty/kitty.conf;
     ".config/helix/config.toml".source = ../config/helix/config.toml;
     ".config/helix/languages.toml".source = ../config/helix/languages.toml;
-    ".tmux.conf".source = ../config/tmux/.tmux.conf;
 
     "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
