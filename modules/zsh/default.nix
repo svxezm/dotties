@@ -13,7 +13,7 @@
       se = "sudo -E emacs -nw";
 
       ncf = "sx ~/dotties/system/configuration.nix";
-      hcf = "x ~/dotties/home/home.nix";
+      hcf = "x ~/dotties/home/home.nix -w ~/dotties";
       sfl = "sx /etc/nixos/flake.nix";
       dfl = "sx ~/dotties/flake.nix";
       econf = "e ~/.config/emacs.d/config.el";
