@@ -8,6 +8,62 @@
     keyMode = "vi";
     shortcut = "Space";
     terminal = "tmux-256color";
-    extraConfig = builtins.readFile ../../config/tmux/.tmux.conf;
+    extraConfig = ''
+      bind h split-window -h
+      bind v split-window -v
+      unbind '"'
+      unbind %
+
+      bind r source-file ~/.tmux.conf
+
+      bind -n M-N select-pane -L
+      bind -n M-I select-pane -R
+      bind -n M-U select-pane -U
+      bind -n M-E select-pane -D
+
+      set-option -g default-shell $SHELL
+
+      # DESIGN TWEAKS
+
+      # clock mode
+      setw -g clock-mode-colour pink
+
+      # panes
+      set -g pane-border-style 'fg=pink'
+      set -g pane-active-border-style 'fg=yellow'
+
+      # statatusbar
+      set -g status-position bottom
+      set -g status-justify left
+      set -g status-style 'fg=pink'
+
+      set -g status-left ' '
+      set -g status-left-length 10
+
+      set -g status-right-style 'fg=black bg=pink'
+      set -g status-right ' %H:%M %d-%m-%Y '
+      set -g status-right-length 50
+
+      setw -g window-status-current-style 'fg=black bg=pink'
+      setw -g window-status-current-format ' #I #W #F '
+
+      setw -g window-status-style 'fg=pink bg=black'
+      setw -g window-status-format ' #I #[f=white]#W #[fg=pink]#F '
+
+      setw -g window-status-bell-style 'fg=colour250 bg=white bold'
+
+      # messages
+      set -g message-style 'fg=black bg=pink bold'
+
+      # movement through Ctrl + [
+      unbind -T copy-mode-vi h
+      unbind -T copy-mode-vi j
+      unbind -T copy-mode-vi k
+      unbind -T copy-mode-vi l
+      bind -T copy-mode-vi n send -X cursor-left
+      bind -T copy-mode-vi e send -X cursor-down
+      bind -T copy-mode-vi u send -X cursor-up
+      bind -T copy-mode-vi i send -X cursor-right
+    '';
   };
 }
