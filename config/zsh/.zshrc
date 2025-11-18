@@ -1,168 +1,21 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-source $HOME/.zshenv
-
-export PATH="$HOME:$PATH"
-
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-export PICO_SDK_PATH="$HOME/pico/pico-sdk"
-
-export BUN_INSTALL="$HOME/.bun" 
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# sets custom rustfmt config
-export RUSTFMT_CONFIG_PATH="$HOME/.config/rustfmt/rustfmt.toml"
-
-# export GDK_BACKEND=x11
-# export WINIT_UNIX_BACKEND=x11
-
-# export WEBKIT_DISABLE_DMABUF_RENDERER=1
-# export TAURI_WRY_DISABLE_GPU=1
-
-# export XDG_SESSION_TYPE=x11
-# export QT_QPA_PLATFORM=x11
-# export GDK_BACKEND=x11
-# export MOZ_ENABLE_WAYLAND=1
-
-export PATH="$HOME/Downloads/zls/zig-out/bin:$PATH"
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
-
-~/boot/show_boot_message.sh
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
 typeset -U path cdpath fpath manpath
+for profile in ${(z)NIX_PROFILES}; do
+  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
+done
 
-# for profile in ${(z)NIX_PROFILES}; do
-#   fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
-# done
+HELPDIR="/nix/store/1a22v0kyhffmy136i5i5ldq3x4058146-zsh-5.9/share/zsh/$ZSH_VERSION/help"
 
-# HELPDIR="/nix/store/azf64cfahr0215gildbdksf6lmjghnyg-zsh-5.9/share/zsh/$ZSH_VERSION/help"
-
-
-
-
-
-# Oh-My-Zsh/Prezto calls compinit during initialization,
-# calling it twice causes slight start up slowdown
-# as all $fpath entries will be traversed again.
-
+source /nix/store/dydb3zxxp2flbzwa0yd3x92rwgrbc03x-zsh-autosuggestions-0.7.1/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(history)
 
 
 # oh-my-zsh extra settings for plugins
 
 # oh-my-zsh configuration generated by NixOS
-plugins=(git zoxide z)
-
-ZSH_THEME="bubblegum"
+plugins=(git z)
+ZSH_CUSTOM="/home/liz/.config/oh-my-zsh-custom"
+ZSH_THEME="sobole"
 source $ZSH/oh-my-zsh.sh
-
-
-
-
 
 # History options should be set in .zshrc and after oh-my-zsh sourcing.
 # See https://github.com/nix-community/home-manager/issues/177.
@@ -173,47 +26,39 @@ HISTFILE="$HOME/.zsh_history"
 mkdir -p "$(dirname "$HISTFILE")"
 
 setopt HIST_FCNTL_LOCK
+unsetopt APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 unsetopt HIST_IGNORE_ALL_DUPS
+unsetopt HIST_SAVE_NO_DUPS
+unsetopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
 unsetopt HIST_EXPIRE_DUPS_FIRST
 setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 
 
+alias -- calc=/media/OS/utils/calc/target/release/calc
+alias -- cleangens='sudo nix-collect-garbage -d'
+alias -- currency=/media/OS/utils/currency/target/release/currency
+alias -- dotflake='sx ~/dotties/flake.nix'
+alias -- e='emacs -nw'
+alias -- econf='e ~/.config/emacs.d/config.el'
+alias -- fact='nix-instantiate --eval /media/OS/codes/languages/nix/factorial/factorial.nix --arg num'
+alias -- genlist='sudo nix-env --list-generations -p /nix/var/nix/profiles/system'
+alias -- homeconf='x ~/dotties/home/home.nix'
+alias -- homerb='nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz && source ~/.zshrc'
+alias -- i3conf='x ~/dotties/config/i3/config'
+alias -- nixcg=nix-collect-garbage
+alias -- nixconf='sx ~/dotties/system/configuration.nix'
+alias -- nixrb='cd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#nixos'
+alias -- p=/media/OS/codes/languages/rust/projects/pls/target/release/pls
+alias -- se='sudo -E emacs -nw'
+alias -- search='cd /media/OS/codes/languages/rust/projects/search && ./target/release/search'
+alias -- sx='sudo -E hx'
+alias -- sysflake='sx /etc/nixos/flake.nix'
+alias -- todo=/media/OS/utils/todo/target/release/todo
+alias -- x=hx
+source /nix/store/cjvvc0mnz2bjavbb83i0ia88b0j0cccr-zsh-syntax-highlighting-0.8.0/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=()
 
 
-# Aliases
-alias -- 'please'='sudo'
-# alias -- 'cleangens'='sudo nix-collect-garbage -d'
-# alias -- 'flakeconf'='sudo nvim /etc/nixos/flake.nix'
-# alias -- 'genlist'='sudo nix-env --list-generations -p /nix/var/nix/profiles/system'
-# alias -- 'homeconf'='sudo nvim /etc/nixos/home.nix'
-# alias -- 'homerb'='home-manager switch --flake /etc/nixos#liz'
-alias -- 'hyprconf'='helix ~/dotties/config/hypr/hyprland.conf'
-# alias -- 'nixcg'='nix-collect-garbage'
-# alias -- 'nixconf'='sudo nvim /etc/nixos/configuration.nix'
-# alias -- 'nixrb'='sudo nixos-rebuild switch --flake /etc/nixos#nixos'
-# alias -- 'upgrade'='sudo nixos-rebuild switch --upgrade'
-alias -- 'upgrade'='sudo pacman -Syu --noconfirm'
-# alias -- 'v'='nvim'
-alias -- 'x'='helix'
-alias -- 'sx'='sudo -E helix'
-alias -- 'e'='emacs -nw'
-alias -- 'se'='sudo emacs -nw'
-alias -- 'rebuild'='cd ~/dotties && source virtenv/bin/activate && ./dotbot/bin/dotbot -c install.conf.yaml && source ~/.zshrc'
-alias -- 'cargo-clean'='~/dotties/config/scripts/cargo_clean.sh'
-alias -- 'zig-clean'='~/dotties/config/scripts/zig_clean.sh'
-alias -- 'zshconf'='sx ~/dotties/config/zsh/.zshrc'
-alias -- 'i3conf'='x ~/dotties/config/i3/config'
-alias -- 'econf'='x ~/.emacs.d/init.el'
-
-# utils
-alias -- 'p'='/media/OS/codes/languages/rust/projects/pls/target/release/pls'
-alias -- 'calc'='/media/OS/utils/calc/target/release/calc'
-alias -- 'todo'='/media/OS/utils/todo/target/release/todo'
-alias -- 'currency'='/media/OS/utils/currency/target/release/currency'
-alias -- 'zigver'='/home/liz/dotties/config/scripts/zigver.exe'
-alias -- 'mt'='sudo mount /dev/sdb1 /home/liz/external_drive'
-alias -- 'umt'='sudo /home/liz/external_drive'
-alias -- 'search'='/media/OS/codes/languages/rust/projects/search/target/release/search'
