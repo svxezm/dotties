@@ -7,6 +7,7 @@ in
   imports = [
     ../modules/zsh
     ../modules/tmux
+    ../modules/helix
   ];
 
   home.username = "liz";
@@ -31,7 +32,6 @@ in
 
     librewolf
     kitty
-    helix
     emacs
     emacsPackages.meow
     emacsPackages.lsp-mode
@@ -88,8 +88,6 @@ in
     ".config/i3/search.sh".source = ../config/i3/search.sh;
     ".config/i3status/i3status.conf".source = ../config/i3status/i3status.conf;
     ".config/kitty/kitty.conf".source = ../config/kitty/kitty.conf;
-    ".config/helix/config.toml".source = ../config/helix/config.toml;
-    ".config/helix/languages.toml".source = ../config/helix/languages.toml;
 
     "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
