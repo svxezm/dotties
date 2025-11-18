@@ -8,6 +8,7 @@ in
     ../modules/zsh
     ../modules/tmux
     ../modules/helix
+    ../modules/kitty
   ];
 
   home.username = "liz";
@@ -31,7 +32,6 @@ in
     redshift
 
     librewolf
-    kitty
     emacs
     emacsPackages.meow
     emacsPackages.lsp-mode
@@ -87,7 +87,6 @@ in
     ".config/i3/config".source = ../config/i3/config;
     ".config/i3/search.sh".source = ../config/i3/search.sh;
     ".config/i3status/i3status.conf".source = ../config/i3status/i3status.conf;
-    ".config/kitty/kitty.conf".source = ../config/kitty/kitty.conf;
 
     "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
