@@ -12,20 +12,21 @@
       e = "emacs -nw";
       se = "sudo -E emacs -nw";
 
-      nixconf = "sx ~/dotties/system/configuration.nix";
-      homeconf = "x ~/dotties/home/home.nix";
-      sysflake = "sx /etc/nixos/flake.nix";
-      dotflake = "sx ~/dotties/flake.nix";
+      ncf = "sx ~/dotties/system/configuration.nix";
+      hcf = "x ~/dotties/home/home.nix";
+      sfl = "sx /etc/nixos/flake.nix";
+      dfl = "sx ~/dotties/flake.nix";
       econf = "e ~/.config/emacs.d/config.el";
 
-      nixrb = "cd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#nixos";
-      homerb = "nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz && source ~/.zshrc";
+      nrb = "cd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+      hrb = "nix run github:nix-community/home-manager -- switch --flake ~/dotties#liz && source ~/.zshrc";
 
       genlist = "sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
       cleangens = "sudo nix-collect-garbage -d";
-      nixcg = "nix-collect-garbage";
+      ncg = "nix-collect-garbage";
 
-      i3conf = "x ~/dotties/config/i3/config";
+      i3c = "x ~/dotties/config/i3/config";
+      zc = "x ~/dotties/modules/zsh/default.nix";
 
       p = "/media/OS/codes/languages/rust/projects/pls/target/release/pls";
       calc = "/media/OS/utils/calc/target/release/calc";
