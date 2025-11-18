@@ -8,6 +8,6 @@
     keyMode = "vi";
     shortcut = "Space";
     terminal = "tmux-256color";
-    extraConfig = builtins.readFile ./.tmux.conf;
+    extraConfig = builtins.readFile ../../config/tmux/.tmux.conf;
   };
 }
