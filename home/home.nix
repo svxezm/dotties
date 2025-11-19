@@ -9,7 +9,6 @@ in
     ../modules/tmux
     ../modules/helix
     ../modules/kitty
-    ../modules/i3
   ];
 
   home.username = "liz";
@@ -31,6 +30,7 @@ in
     yt-dlp
     flameshot
     redshift
+    i3status
 
     librewolf
     emacs
@@ -85,6 +85,9 @@ in
   };
 
   home.file = {
+    ".config/i3/config".source = ../config/i3/config;
+    ".config/i3status/i3status.conf".source = ../config/i3status/i3status.conf;
+
     "${configHome}/oh-my-zsh-custom/themes/sobole.zsh-theme".source =
       pkgs.fetchFromGitHub {
         owner = "sobolevn";
