@@ -5,11 +5,11 @@
 
       config.inlayHints = {
         bindingModeHints.enable = false;
-        closingBraceHinds.minLines = 10;
+        closingBraceHints.minLines = 10;
         closureReturnTypeHints.enable = "with_block";
         discriminantHints.enable = "fieldless";
-        lifepineElisionHints.enable = "skip_trivial";
-        typeHinds.hideClosureInitialization = false;
+        lifetimeElisionHints.enable = "skip_trivial";
+        typeHints.hideClosureInitialization = false;
       };
     };
     clangd = {
@@ -25,6 +25,10 @@
   };
 
   grammar = [
+    {
+      name = "rust";
+      source = { git = "https://github.com/tree-sitter/tree-sitter-rust"; rev = "261b20226c04ef601adbdf185a800512a5f66291"; };
+    }
     {
       name = "c";
       source = { git = "https://github.com/tree-sitter/tree-sitter-c"; rev = "7175a6dd5fc1cee660dce6fe23f6043d75af424a"; };
@@ -91,6 +95,47 @@
       language-servers = ["rust-analyzer"];
       indent = { tab-width = 4; unit = "    "; };
       persistent-diagnostic-sources = ["rustc" "clippy"];
+
+      auto-pairs = {
+        "(" = ")";
+        "{" = "}";
+        "[" = "]";
+        "\"" = "\"";
+        "`" = "`";
+      };
+
+      debugger = {
+        name = "lldb-dap";
+        transport = "stdio";
+        command = "lldb-dap";
+
+        templates = [
+          {
+            name = "binary";
+            request = "launch";
+            completion = [ { name = "binary"; completion = "filename"; } ];
+            args = { program = "{0}"; };
+          }
+          {
+            name = "binary (terminal)";
+            request = "launch";
+            completion = [ { name = "binary"; completion = "filename"; } ];
+            args = { program = "{0}"; runInTerminal = true; };
+          }
+          {
+            name = "attach";
+            request = "attach";
+            completion = [ "pid" ];
+            args = { pid = "{0}"; };
+          }
+          {
+            name = "gdbserver attach";
+            request = "attach";
+            completion = [ { name = "lldb connect url"; default = "connect://localhost:3333"; } { name = "file"; completion = "filename"; } "pid" ];
+            args = { attachCommands = [ "platform select remote-gdb-server" "platform connect {0}" "file {1}" "attach {2}" ]; };
+          }
+        ];
+      };
     }
     {
       name = "c";
