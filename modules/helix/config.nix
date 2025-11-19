@@ -1,5 +1,5 @@
 {
-  theme = "rose_pine_moon";
+  theme = "rasmus";
 
   editor = {
     line-number = "relative";
