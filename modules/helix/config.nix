@@ -1,5 +1,5 @@
 {
-  theme = "ashen";
+  theme = "earl_grey";
 
   editor = {
     line-number = "relative";
