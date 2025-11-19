@@ -93,6 +93,7 @@
         { start = "/*!"; end = "*/"; }
       ];
       language-servers = ["rust-analyzer"];
+      formatter = { command = "rustfmt"; };
       indent = { tab-width = 4; unit = "    "; };
       persistent-diagnostic-sources = ["rustc" "clippy"];
 

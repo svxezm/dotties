@@ -50,6 +50,8 @@ in
 
     cargo
     rustc
+    rustfmt
+    clippy
     gcc
     clang-tools
     cppcheck
