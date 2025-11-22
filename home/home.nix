@@ -48,10 +48,7 @@ in
     obs-studio
     obsidian
 
-    cargo
-    rustc
-    rustfmt
-    clippy
+    rustup
     gcc
     clang-tools
     cppcheck
@@ -63,7 +60,6 @@ in
     zig
 
     # language servers
-    rust-analyzer
     lldb
     typescript-language-server
     vscode-langservers-extracted
