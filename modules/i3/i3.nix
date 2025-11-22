@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   mod = "Mod1";
   main1 = "#a26769";
@@ -40,7 +40,7 @@ in
         "${mod}+q" = "kill";
         "${mod}+d" = "exec --no-startup-id dmenu_run";
       
-        "${mod}+a" = "exec --no-startup-id cd /media/OS/codes/languages/rust/projects/search && kitty -e ./target/release/search";
+        "${mod}+a" = "exec --no-startup-id cd ~/Downloads/search && kitty -e ./target/release/search";
       
         "${mod}+n" = "focus left";
         "${mod}+e" = "focus down";
