@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  utils = "~/utils";
+in
 {
   programs.zsh = {
     enable = true;
@@ -28,12 +31,11 @@
       i3c = "x ~/dotties/config/i3/config";
       zc = "x ~/dotties/modules/zsh/default.nix";
 
-      p = "/media/OS/codes/languages/rust/projects/pls/target/release/pls";
-      calc = "/media/OS/utils/calc/target/release/calc";
-      todo = "/media/OS/utils/todo/target/release/todo";
-      currency = "/media/OS/utils/currency/target/release/currency";
-      search = "cd /media/OS/codes/languages/rust/projects/search && ./target/release/search";
-      fact = "nix-instantiate --eval /media/OS/codes/languages/nix/factorial/factorial.nix --arg num";
+      p = "${utils}/pls";
+      calc = "${utils}/calc";
+      todo = "${utils}/todo";
+      currency = "${utils}/currency";
+      search = "${utils}/search";
     };
     history.size = 10000;
 
