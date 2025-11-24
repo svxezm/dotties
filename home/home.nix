@@ -20,6 +20,7 @@ in
   xdg.enable = true;
 
   home.packages = with pkgs; [
+    # cli
     fzf
     unzip
     zip
@@ -32,12 +33,8 @@ in
     flameshot
     redshift
 
+    # gui
     librewolf
-    emacs
-    emacsPackages.meow
-    emacsPackages.lsp-mode
-    emacsPackages.ef-themes
-
     discord
     spotify
     steam
@@ -48,7 +45,11 @@ in
     obs-studio
     obsidian
 
-    rustup
+    # compilers
+    rustc
+    cargo
+    rustfmt
+    clippy
     gcc
     clang-tools
     cppcheck
@@ -60,6 +61,7 @@ in
     zig
 
     # language servers
+    rust-analyzer
     lldb
     typescript-language-server
     vscode-langservers-extracted
@@ -67,6 +69,12 @@ in
     nil
     nixd
     zls
+
+    # extra
+    openssl
+    pkg-config
+    cargo-watch
+    cargo-edit
   ];
 
   home.pointerCursor = {
@@ -100,10 +108,6 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  home.sessionVariables = {
-    EDITOR = "hx";
-  };
 
   programs.home-manager.enable = true;
 }
