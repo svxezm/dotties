@@ -10,6 +10,7 @@ in
     ../modules/helix
     ../modules/kitty
     ../modules/i3
+    ../modules/obs
   ];
 
   home.username = "liz";
@@ -42,7 +43,6 @@ in
     vlc
     mpv
     krita
-    obs-studio
     obsidian
 
     # compilers
