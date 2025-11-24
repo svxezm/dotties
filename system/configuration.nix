@@ -125,6 +125,8 @@
   programs = {
     i3lock.enable = true;
 
+    obs-studio.enableVirtualCamera = true;
+
     zsh.enable = true;
 
     nix-ld.enable = true;
