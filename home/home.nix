@@ -36,7 +36,7 @@ in
 
     # gui
     librewolf
-    discord
+    discord-canary
     spotify
     steam
     steam-run
