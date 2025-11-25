@@ -22,6 +22,10 @@
         "--compile_args_from=filesystem"
       ];
     };
+    emmet-lsp = {
+      command = "emmet-language-server";
+      args = ["--stdio"];
+    };
   };
 
   grammar = [
@@ -38,6 +42,10 @@
       source = { git = "https://github.com/tree-sitter/tree-sitter-cpp"; rev = "master"; };
     }
     {
+      name = "nix";
+      source = { git = "https://github.com/nix-community/tree-sitter-nix"; rev = "1b69cf1fa92366eefbe6863c184e5d2ece5f187d"; };
+    }
+    {
       name = "zig";
       source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-zig"; rev = "eb7d58c2dc4fbeea4745019dee8df013034ae66b"; };
     }
@@ -50,8 +58,16 @@
       source = { git = "https://github.com/tree-sitter/tree-sitter-typescript"; rev = "b1bf4825d9eaa0f3bdeb1e52f099533328acfbdf"; subpath = "typescript"; };
     }
     {
+      name = "vue";
+      source = { git = "https://github.com/ikatyang/tree-sitter-vue"; rev = "91fe2754796cd8fba5f229505a23fa08f3546c06"; };
+    }
+    {
       name = "tsx";
       source = { git = "https://github.com/tree-sitter/tree-sitter-typescript"; rev = "b1bf4825d9eaa0f3bdeb1e52f099533328acfbdf"; subpath = "tsx"; };
+    }
+    {
+      name = "html";
+      source = { git = "https://github.com/tree-sitter/tree-sitter-html"; rev = "cbb91a0ff3621245e890d1c50cc811bffb77a26b"; };
     }
     {
       name = "css";
@@ -72,6 +88,46 @@
     {
       name = "c-sharp";
       source = { git = "https://github.com/tree-sitter/tree-sitter-c-sharp"; rev = "b5eb5742f6a7e9438bee22ce8026d6b927be2cd7"; };
+    }
+    {
+      name = "python";
+      source = { git = "https://github.com/tree-sitter/tree-sitter-python"; rev = "293fdc02038ee2bf0e2e206711b69c90ac0d413f"; };
+    }
+    {
+      name = "bash";
+      source = { git = "https://github.com/tree-sitter/tree-sitter-bash"; rev = "487734f87fd87118028a65a4599352fa99c9cde8"; };
+    }
+    {
+      name = "make";
+      source = { git = "https://github.com/alemuller/tree-sitter-make"; rev = "a4b9187417d6be349ee5fd4b6e77b4172c6827dd"; };
+    }
+    {
+      name = "cmake";
+      source = { git = "https://github.com/uyha/tree-sitter-cmake"; rev = "6e51463ef3052dd3b328322c22172eda093727ad"; };
+    }
+    {
+      name = "go";
+      source = { git = "https://github.com/tree-sitter/tree-sitter-go"; rev = "12fe553fdaaa7449f764bc876fd777704d4fb752"; };
+    }
+    {
+      name = "gomod";
+      source = { git = "https://github.com/camdencheek/tree-sitter-go-mod"; rev = "6efb59652d30e0e9cd5f3b3a669afd6f1a926d3c"; };
+    }
+    {
+      name = "gotmpl";
+      source = { git = "https://github.com/ngalaiko/tree-sitter-go-template"; rev = "ca26229bafcd3f37698a2496c2a5efa2f07e86bc"; };
+    }
+    {
+      name = "gowork";
+      source = { git = "https://github.com/omertuc/tree-sitter-go-work"; rev = "6dd9dd79fb51e9f2abc829d5e97b15015b6a8ae2"; };
+    }
+    {
+      name = "go-format-string";
+      source = { git = "https://codeberg.org/kpbaks/tree-sitter-go-format-string"; rev = "06587ea641155db638f46a32c959d68796cd36bb"; };
+    }
+    {
+      name = "sql";
+      source = { git = "https://github.com/DerekStride/tree-sitter-sql"; rev = "b9d109588d5b5ed986c857464830c2f0bef53f18"; };
     }
   ];
 
@@ -253,6 +309,17 @@
       };
     }
     {
+      name = "nix";
+      scope = "source.nix";
+      injection-regex = "nix";
+      file-types = [ "nix" ];
+      shebangs = [];
+      comment-token = "#";
+      language-servers = [ "nil" "nixd" ];
+      indent = { tab-width = 2; unit = "  "; };
+      formatter = { command = "nixfmt"; };
+    }
+    {
       name = "javascript";
       scope = "source.js";
       injection-regex = "(js|javascript)";
@@ -294,6 +361,16 @@
       indent = { tab-width = 2; unit = "  "; };
     }
     {
+      name = "vue";
+      scope = "source.vue";
+      injection-regex = "vue";
+      file-types = ["vue"];
+      roots = ["package.json"];
+      block-comment-tokens = { start = "<!--"; end = "-->"; };
+      indent = { tab-width = 2; unit = "  "; };
+      language-servers = [ "vuels" ];
+    }
+    {
       name = "jsx";
       scope = "source.jsx";
       injection-regex = "jsx";
@@ -302,7 +379,7 @@
       roots = [ "package.json" ];
       comment-token = "//";
       block-comment-tokens = { start = "/*"; end = "*/"; };
-      language-servers = [ "typescript-language-server" ];
+      language-servers = [ "typescript-language-server" "emmet-lsp" ];
       indent = { tab-width = 2; unit = "  "; };
       grammar = "javascript";
     }
@@ -316,7 +393,25 @@
       comment-token = "//";
       indent = { tab-width = 2; unit = "  "; };
       block-comment-tokens = { start = "/*"; end = "*/"; };
-      language-servers = [ "typescript-language-server" ];
+      language-servers = [ "typescript-language-server" "emmet-lsp" ];
+    }
+    {
+      name = "html";
+      scope = "text.html.basic";
+      injection-regex = "html";
+      file-types = [ "html" "htm" "shtml" "xhtml" "xht" "jsp" "asp" "aspx" "jshtm" "volt" "rhtml" "cshtml" ];
+      block-comment-tokesn = { start = "<!--"; end = "-->"; };
+      language-servers = [ "vscode-html-language-server" "superhtml" "emmet-lsp" ];
+      auto-format = true;
+      indent = { tab-width = 2; unit = "  "; };
+      auto-pairs = {
+        "(" = ")";
+        "{" = "}";
+        "[" = "]";
+        "\"" = "\"";
+        "'" = "'";
+        "<" = ">";
+      };
     }
     {
       name = "css";
@@ -392,6 +487,208 @@
           }
         ];
       };
+    }
+    {
+      name = "python";
+      scope = "source.python";
+      injection-regex = "py(thon)?";
+      file-types = [
+        "py" "pyi" "py3" "pyw" "ptl" "rpy" "cpy" "ipy" "pyt"
+        { glob = ".python_history"; }
+        { glob = ".pythonstartup"; }
+        { glob = ".pythonrc"; }
+        { glob = "*SConstruct"; }
+        { glob = "*SConscript"; }
+        { glob = "*sconstruct"; }
+      ];
+      shebangs = [ "python" "uv" ];
+      roots = [ "pyproject.toml" "setup.py" "poetry.lock" "pyrightconfig.json" ];
+      comment-token = "#";
+      language-servers = [ "ty" "ruff" "jedi" "pylsp" ];
+      indent = { tab-width = 4; unit = "    "; };
+    }
+    {
+      name = "bash";
+      scope = "source.bash";
+      injection-regex = "(shell|bash|zsh|sh)";
+      file-types = [
+        "sh"
+        "bash"
+        "ash"
+        "dash"
+        "ksh"
+        "mksh"
+        "zsh"
+        "zshenv"
+        "zlogin"
+        "zlogout"
+        "zprofile"
+        "zshrc"
+        "eclass"
+        "ebuild"
+        "bazelrc"
+        "Renviron"
+        "zsh-theme"
+        "cshrc"
+        "tcshrc"
+        "bashrc_Apple_Terminal"
+        "zshrc_Apple_Terminal"
+        { glob = "i3/config"; }
+        { glob = "sway/config"; }
+        { glob = ".tmux.conf"; }
+        { glob = "tmux.conf"; }
+        { glob = ".sh_history"; }
+        { glob = ".bash_history"; }
+        { glob = ".bash_login"; }
+        { glob = ".bash_logout"; }
+        { glob = ".bash_profile"; }
+        { glob = ".bashrc"; }
+        { glob = ".profile"; }
+        { glob = ".zshenv"; }
+        { glob = ".zlogin"; }
+        { glob = ".zlogout"; }
+        { glob = ".zprofile"; }
+        { glob = ".zshrc"; }
+        { glob = ".zimrc"; }
+        { glob = "APKBUILD"; }
+        { glob = ".bash_aliases"; }
+        { glob = "bash_completion"; }
+        { glob = "bash-completion/completions/*"; }
+        { glob = "bash_completion.d/*"; }
+        { glob = ".Renviron"; }
+        { glob = ".xprofile"; }
+        { glob = ".xsession"; }
+        { glob = ".xsessionrc"; }
+        { glob = ".yashrc"; }
+        { glob = ".yash_profile"; }
+        { glob = ".hushlogin"; }
+        { glob = ".xinitrc"; } # ~/.xinitrc
+        { glob = "xinitrc"; } # /etc/X11/xinit/xinitrc
+        { glob = ".xserverrc"; } # ~/.xserverrc
+        { glob = "xserverrc"; } # /etc/X11/xinit/xserverrc
+      ];
+      shebangs = [ "sh" "bash" "dash" "zsh" ];
+      comment-token = "#";
+      language-servers = "bash-language-server";
+      indent = { tab-width = 2; unit = "  "; };
+    }
+    {
+      name = "make";
+      scope = "source.make";
+      file-types = [{ glob = "Makefile"; } { glob = "makefile"; } "make" "mk" "mak" {glob = "GNUmakefile"; } { glob = "OCamlMakefile"; }];
+      shebangs = ["make" "gmake"];
+      injection-regex = "(make|makefile|Makefile|mk)";
+      comment-token = "#";
+      indent = { tab-width = 4; unit = "\t"; };
+    }
+    {
+      name = "cmake";
+      scope = "source.cmake";
+      file-types = ["cmake" { glob = "CMakeLists.txt"; }];
+      comment-token = "#";
+      block-comment-tokens = { start = "#[["; end = "]]"; };
+      indent = { tab-width = 2; unit = "  "; };
+      language-servers = ["neocmakelsp" "cmake-language-server"];
+      injection-regex = "cmake";
+    }
+    {
+      name = "go";
+      scope = "source.go";
+      injection-regex = "go";
+      file-types = ["go"];
+      roots = ["go.work" "go.mod"];
+      auto-format = true;
+      comment-token = "//";
+      block-comment-tokens = { start = "/*"; end = "*/"; };
+      language-servers = [ "gopls" "golangci-lint-lsp" ];
+      indent = { tab-width = 4; unit = "\t"; };
+
+      debugger = {
+        name = "go";
+        transport = "tcp";
+        command = "dlv";
+        args = [ "dap" ];
+        port-arg = "-l 127.0.0.1:{}";
+
+        templates = [
+          {
+            name = "source";
+            request = "launch";
+            completion = [ { name = "entrypoint"; completion = "filename"; default = "."; } ];
+            args = { mode = "debug"; program = "{0}"; };
+          }
+          {
+            name = "binary";
+            request = "launch";
+            completion = [ { name = "binary"; completion = "filename"; } ];
+            args = { mode = "exec"; program = "{0}"; };
+          }
+          {
+            name = "test";
+            request = "launch";
+            completion = [ { name = "tests"; completion = "directory"; default = "."; } ];
+            args = { mode = "test"; program = "{0}"; };
+          }
+          {
+            name = "attach";
+            request = "attach";
+            completion = [ "pid" ];
+            args = { mode = "local"; processId = "{0}"; };
+          
+          }
+          {
+            name = "core";
+            request = "launch";
+            completion = [ { name = "binary"; completion = "filename"; } { name = "core"; completion = "filename"; } ];
+            args = { mode = "core"; program = "{0}"; coreFilePath = "{1}"; };
+          }
+        ];
+      };
+    }
+    {
+      name = "gomod";
+      scope = "source.gomod";
+      injection-regex = "gomod";
+      file-types = [{ glob = "go.mod"; }];
+      auto-format = true;
+      comment-token = "//";
+      language-servers = [ "gopls" ];
+      indent = { tab-width = 4; unit = "\t"; };
+    }
+    {
+      name = "gotmpl";
+      scope = "source.gotmpl";
+      injection-regex = "gotmpl";
+      file-types = ["gotmpl"];
+      comment-token = "//";
+      block-comment-tokens = { start = "/*"; end = "*/"; };
+      language-servers = [ "gopls" ];
+      indent = { tab-width = 2; unit = " "; };
+    }
+    {
+      name = "gowork";
+      scope = "source.gowork";
+      injection-regex = "gowork";
+      file-types = [{ glob = "go.work"; }];
+      auto-format = true;
+      comment-token = "//";
+      language-servers = [ "gopls" ];
+      indent = { tab-width = 4; unit = "\t"; };
+    }
+    {
+      name = "go-format-string";
+      scope = "source.go-format-string";
+      file-types = [];
+      injection-regex = "go-format-string";
+    }
+    {
+      name = "sql";
+      scope = "source.sql";
+      file-types = ["sql" "dsql"];
+      comment-token = "--";
+      block-comment-tokens = { start = "/*"; end = "*/"; };
+      indent = { tab-width = 4; unit = "    "; };
+      injection-regex = "sql";
     }
   ];
 }

@@ -65,10 +65,25 @@ in
     lldb
     typescript-language-server
     vscode-langservers-extracted
+    vue-language-server
     intelephense
     nil
     nixd
     zls
+    superhtml
+    emmet-ls
+    bash-language-server
+    neocmakelsp
+    cmake-language-server
+    gopls
+    neocmakelsp
+    delve
+    asm-lsp
+    omnisharp-roslyn
+    ty
+    ruff
+    python313Packages.jedi
+    python313Packages.python-lsp-server
 
     # extra
     openssl
