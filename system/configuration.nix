@@ -31,6 +31,10 @@
     networkmanager.enable = true;
   };
 
+  security = {
+    rtkit.enable = true;
+  };
+
   time.timeZone = "America/Sao_Paulo";
 
   i18n = {
@@ -110,6 +114,7 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      jack.enable = true;
     };
 
     openssh.enable = true;
